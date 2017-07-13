@@ -1,8 +1,11 @@
-<!--The whole content below can be removed with the new code.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!!
-  </h1>
-  <img width="300" src="/assets/images/banner.png" />
+<div class="container-fluid">
+  <div style="text-align:center">
+    <h1>
+      Welcome to {{title}}!!
+    </h1>
+    <img width="300" src="/assets/images/banner.png" />
+  </div>
+  <span *ngFor="let m of modulenumbers">
+    <app-module [moduleNumber]="m"></app-module>
+  </span>
 </div>
-

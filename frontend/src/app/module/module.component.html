@@ -1,0 +1,6 @@
+<p>
+  <span (click)="clicked()">Module {{moduleNumber}}<br /></span>
+  <span (open)="onOpen($event)" *ngFor="let domino of dominos" [hidden]="!isOpen">
+    <span (click)="dominoSelected(domino)">{{domino.inValue}} / {{domino.outValue}}</span> <br />
+  </span>
+</p>

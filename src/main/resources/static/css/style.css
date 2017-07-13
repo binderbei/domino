@@ -1,0 +1,130 @@
+.sg-color__color--key {
+  background: #ff6e00; }
+
+.sg-color__color--key-60 {
+  background: #ffa866; }
+
+.sg-color__color--key-40 {
+  background: #ffc599; }
+
+.sg-color__color--neutral-gray-1 {
+  background: #616268; }
+
+.sg-color__color--neutral-gray-2 {
+  background: #a0a1a4; }
+
+.sg-color__color--neutral-gray-3 {
+  background: #a8adad; }
+
+.sg-color__color--neutral-gray-4 {
+  background: #dedede; }
+
+.sg-color__color--warm-gray-1 {
+  background: #f7f7f7; }
+
+.sg-color__color--warm-gray-2 {
+  background: #f2efeb; }
+
+.sg-color__color--warm-gray-3 {
+  background: #e9e7e5; }
+
+.sg-color__color--warm-gray-4 {
+  background: #b7afad; }
+
+.sg-color__color--cold-gray-1 {
+  background: #f0f2f4; }
+
+.sg-color__color--cold-gray-2 {
+  background: #e7ebee; }
+
+.sg-color__color--cold-gray-3 {
+  background: #dcdfe4; }
+
+.sg-color__color--cold-gray-4 {
+  background: #ced3da; }
+
+.sg-color__color--cold-gray-5 {
+  background: #c3cdd5; }
+
+.sg-color__color--cold-gray-6 {
+  background: #b9c1ca; }
+
+.sg-color__color--blue-1 {
+  background: #91a5b7; }
+
+.sg-color__color--blue-2 {
+  background: #8796a2; }
+
+.sg-color__color--blue-3 {
+  background: #4e6f87; }
+
+.sg-color__color--blue-4 {
+  background: #528998; }
+
+.sg-color__color--accent-1 {
+  background: #9fd1dd; }
+
+.sg-color__color--accent-2 {
+  background: #41a3bc; }
+
+.sg-color__color--blue-3-66 {
+  background: rgba(78, 111, 135, 0.66); }
+
+.sg-color__color--blue-3-75 {
+  background: rgba(78, 111, 135, 0.75); }
+
+.sg-color__color--section-background {
+  background: #f7f7f7; }
+
+.sg-color__color--key-light {
+  background: #ff974d; }
+
+.sg-color__color--key-dark {
+  background: #f06400; }
+
+.sg-color__color--copytext {
+  background: #616268; }
+
+.sg-color__color--hover {
+  background: #46a3ba; }
+
+.sg-color__color--active {
+  background: #a0a1a4; }
+
+.sg-color__color--navigation-active {
+  background: #dedede; }
+
+.sg-color__color--positive {
+  background: #46a3ba; }
+
+.sg-color__color--table {
+  background: #dedede; }
+
+.sg-color__color--border {
+  background: #616268; }
+
+.sg-color__color--status-0 {
+  background: #00c814; }
+
+.sg-color__color--product-headline {
+  background: #c3cdd5; }
+
+.sg-color__color--form {
+  background: #ebebeb; }
+
+.sg-color__color--lightgrey {
+  background: #a0a0a0; }
+
+.sg-color__color--grey {
+  background: #ddd; }
+
+.sg-color__color--white {
+  background: #fff; }
+
+.sg-colors {
+  margin: 36px 0; }
+
+.sg-colors li {
+  float: left;
+  width: 19%;
+  margin-bottom: 16px; }

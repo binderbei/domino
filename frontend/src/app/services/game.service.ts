@@ -3,14 +3,25 @@ import {Domino} from "../model/domino";
 
 @Injectable()
 export class GameService {
-  private selected: Domino[] = []
+  private selected: Map<number, Domino> = new Map<number, Domino>();
   public openModule: number = -1;
   @Output() open: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
-  setSelected(moduleId: number, domino: Domino) {
-    this.selected[moduleId] = domino;
-    this.selected.forEach(t=>console.log(t))
+  setSelected(moduleNumber: number, domino: Domino) {
+    this.selected.set(moduleNumber, domino);
+  }
+
+  getSelected(moduleNumber: number) {
+    return this.selected.get(moduleNumber);
+  }
+
+  isSelected(moduleNumber: number) {
+    return this.selected.has(moduleNumber);
+  }
+
+  removeSelect(moduleNumber: number) {
+    return this.selected.delete(moduleNumber);
   }
 }

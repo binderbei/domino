@@ -17,13 +17,12 @@ export class ModuleComponent implements OnInit {
 
   ngOnInit() {
     this.gameService.open
-      .subscribe(item => {console.log("what"); this.isOpen = this.gameService.openModule == this.moduleNumber});
+      .subscribe(item => {this.isOpen = this.gameService.openModule == this.moduleNumber});
   }
 
   clicked() {
     this.gameService.openModule = this.moduleNumber;
     this.isOpen = !this.isOpen && (this.gameService.openModule == this.moduleNumber);
-    console.log(this.isOpen);
     if (this.isOpen) {
       this.gameService.open.emit(null);
       this.restService.getDominosForModuleId(this.moduleNumber).subscribe(dominos => this.dominos = dominos);
@@ -31,8 +30,17 @@ export class ModuleComponent implements OnInit {
       this.dominos = [];
     }
   }
-  onOpen() {
 
+  isSelected() {
+    return this.gameService.isSelected(this.moduleNumber);
+  }
+
+  getSelected() {
+    return this.gameService.getSelected(this.moduleNumber);
+  }
+
+  dominoDeselect() {
+    this.gameService.removeSelect(this.moduleNumber);
   }
 
   dominoSelected(domino: Domino) {

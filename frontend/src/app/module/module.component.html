@@ -1,14 +1,31 @@
-<p>
+
+<div class="row">
   <span *ngIf="!isSelected()">
-  <h3 (click)="clicked()">Module {{moduleNumber}}<br /></h3>
-
-
+    <h3 (click)="clicked()">Module {{moduleNumber}}<br /></h3>
     <span *ngFor="let domino of dominos" [hidden]="!isOpen">
-      <span (click)="dominoSelected(domino)">{{domino.inValue}} / {{domino.outValue}}</span> <br />
+      <div (click)="dominoSelected(domino)" class="domino">
+        <div class="one">
+          {{domino.inValue}}
+        </div>
+        <div class="line"> </div>
+        <div class="one">
+          {{domino.outValue}}
+        </div>
+      </div>
     </span>
   </span>
   <span *ngIf="isSelected()">
     <h3>Module {{moduleNumber}}<span (click)="dominoDeselect()" class="glyphicon glyphicon-remove"></span></h3><br />
-    {{getSelected().inValue}} / {{getSelected().outValue}}
+    <div class="domino">
+        <div class="one">
+          {{getSelected().inValue}}
+        </div>
+        <div class="line"> </div>
+        <div class="one">
+          {{getSelected().outValue}}
+        </div>
+      </div>
   </span>
-</p>
+</div>
+
+

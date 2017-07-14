@@ -1,0 +1,29 @@
+.domino {
+  float: left;
+  font-size: 20px;
+  color: white;
+  width: 3em;
+  height: 6em;
+  margin: 20px;
+  position: relative;
+  -webkit-border-radius: .4em;
+  -moz-border-radius: .4em;
+  border-radius: .4em;
+}
+
+.domino, .domino .one {
+  background-color:#000;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  padding-top: 0.45em;
+  padding-bottom: 0.9em;
+}
+
+.domino .line {
+  width: 2.5em;
+  height: .2em;
+  position: absolute;
+  top: 2.8em;
+  left: .25em;
+  background-color: #fff;
+}

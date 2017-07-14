@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {Http, Response, URLSearchParams} from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -11,8 +11,12 @@ export class RestService {
 
   constructor(private http:Http) { }
 
-  getDominosForModuleId(moduleId:number): Observable<Domino[]> {
-    return this.http.get("http://localhost:8088/rest-api/dominos/" + moduleId)
+  getDominosForModuleId(moduleId:number, selected: Domino[]): Observable<Domino[]> {
+    let myParams: URLSearchParams = new URLSearchParams();
+    for(let domino of selected) {
+      myParams.append('selected', domino.dominoId);
+    }
+    return this.http.get("http://localhost:8088/rest-api/dominos/" + moduleId, {search: myParams})
       .map(this.extractData);
   }
 

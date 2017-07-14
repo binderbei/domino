@@ -13,7 +13,7 @@ export class GameService {
     this.selected.set(moduleNumber, domino);
   }
 
-  getSelected(moduleNumber: number) {
+  getSelectedDomino(moduleNumber: number) {
     return this.selected.get(moduleNumber);
   }
 
@@ -23,5 +23,13 @@ export class GameService {
 
   removeSelect(moduleNumber: number) {
     return this.selected.delete(moduleNumber);
+  }
+
+  getAllSelectedDominos() {
+    let selectedDominos: Domino[] = [];
+    for (let domino of this.selected.values()) {
+      selectedDominos.push(domino);
+    }
+    return selectedDominos;
   }
 }

@@ -25,7 +25,7 @@ export class ModuleComponent implements OnInit {
     this.isOpen = !this.isOpen && (this.gameService.openModule == this.moduleNumber);
     if (this.isOpen) {
       this.gameService.open.emit(null);
-      this.restService.getDominosForModuleId(this.moduleNumber).subscribe(dominos => this.dominos = dominos);
+      this.restService.getDominosForModuleId(this.moduleNumber, this.gameService.getAllSelectedDominos()).subscribe(dominos => this.dominos = dominos);
     } else {
       this.dominos = [];
     }
@@ -36,11 +36,19 @@ export class ModuleComponent implements OnInit {
   }
 
   getSelected() {
-    return this.gameService.getSelected(this.moduleNumber);
+    return this.gameService.getSelectedDomino(this.moduleNumber);
   }
 
   dominoDeselect() {
     this.gameService.removeSelect(this.moduleNumber);
+    this.gameService.openModule = this.moduleNumber;
+    this.isOpen = true;
+    if (this.isOpen) {
+      this.gameService.open.emit(null);
+      this.restService.getDominosForModuleId(this.moduleNumber, this.gameService.getAllSelectedDominos()).subscribe(dominos => this.dominos = dominos);
+    } else {
+      this.dominos = [];
+    }
   }
 
   dominoSelected(domino: Domino) {

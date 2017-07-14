@@ -22,7 +22,7 @@ export class ModuleComponent implements OnInit {
 
   clicked() {
     this.gameService.openModule = this.moduleNumber;
-    this.isOpen = this.gameService.openModule == this.moduleNumber;
+    this.isOpen = !this.isOpen && (this.gameService.openModule == this.moduleNumber);
     console.log(this.isOpen);
     if (this.isOpen) {
       this.gameService.open.emit(null);

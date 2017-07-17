@@ -1,12 +1,10 @@
 package com.diva_e.controller;
 
 import com.diva_e.data.Domino;
-import com.diva_e.services.DominoService;
+import com.diva_e.service.DominoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,6 +21,6 @@ public class DominoRestController {
     public List<Domino> getModuleDominos(
             @PathVariable("moduleId") Integer moduleId,
             @RequestParam(value="selected", required = false, defaultValue = "") List<String> selected) {
-        return dominoService.getDominosForId(moduleId);
+        return dominoService.getDominosForId(moduleId, selected);
     }
 }

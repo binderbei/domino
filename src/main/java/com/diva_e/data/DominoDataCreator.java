@@ -23,7 +23,7 @@ public class DominoDataCreator {
 
     private static final Map<Integer, Map<String, List<String>>> moduleColorsMap = new LinkedHashMap<>();
     private static Iterator<String> colorIterator;
-    private static final List<String> colors = Arrays.asList("green", "yellow", "blue");//, "orange", "grey", "white", "purple");
+    private static final List<String> colors = Arrays.asList("#91d7fb", "#b1ab5c", "#dc4d79");//, "orange", "grey", "white", "purple");
 
 
     private static String getColor() {

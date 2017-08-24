@@ -25,6 +25,17 @@ class DominoService {
         }
     }
 
+    List<Domino> getAllDominosForModuleId(Integer moduleId) {
+        List<Domino> dominos = new ArrayList<>()
+        Iterable<Vertex> vertices = orientGraph.getVertices("Domino.moduleId", moduleId)
+
+        vertices.iterator().forEachRemaining({
+            dominos.add(createDominoFromVertex(it))
+        })
+        return dominos
+    }
+
+
     List<Domino> getMatchingDominosForModule(Integer moduleId, List<String> selected) {
 
         Collections.sort(selected)
@@ -35,7 +46,7 @@ class DominoService {
 
         GremlinGroovyPipeline pipeIn = new GremlinGroovyPipeline()
         GremlinGroovyPipeline pipeOut = new GremlinGroovyPipeline()
-        pipeIn.start(startPoint).out().loop(1){it.loops < 6 }
+        pipeIn.start(startPoint).as("start").out().loop("start"){it.loops < 6 }
         {
             def list = []; it.path.each{ list.add(it.getProperty('dominoId'))}; list.add(it.object.getProperty('dominoId'));
 
@@ -48,21 +59,28 @@ class DominoService {
 
         }.path{it}
 
-        pipeOut.start(startPoint)
-        pipeOut.in().loop(1)
+        pipeOut.start(startPoint).as("start")
+        pipeOut.in().loop("start")
         {it.loops < 6 }
         {
-            def list = []; it.path.each{ list.add(it.getProperty('productId'))};
+            def list = []; it.path.each{ list.add(it.getProperty('dominoId'))};
             list.add(it.object.getProperty('dominoId')); return true }
         .path{it }
 
+        HashSet<String> result = extractResults(startProductId, moduleId, pipeIn, pipeOut)
+
+        return result.asList()
+
+    }
+
+    private HashSet<String> extractResults(String startProductId, int moduleId, GremlinGroovyPipeline pipeIn, GremlinGroovyPipeline pipeOut) {
         HashSet<String> result = new HashSet<>()
 
-        if(startProductId.startsWith(moduleId + "_")) {
+        if (startProductId.startsWith(moduleId + "_")) {
             result.add(startProductId)
         }
 
-        for(List<List<OrientVertex>> allPathOut: pipeIn.toList()) {
+        for (List<List<OrientVertex>> allPathOut : pipeIn.toList()) {
             allPathOut.each {
                 if (it.getProperty("moduleId").equals(String.valueOf(moduleId))) {
                     result.add(createDominoFromVertex(it))
@@ -70,27 +88,17 @@ class DominoService {
             }
         }
 
-        for(List<List<OrientVertex>> allPathIn:  pipeOut.toList()) {
+        for (List<List<OrientVertex>> allPathIn : pipeOut.toList()) {
             allPathIn.each {
                 if (it.getProperty("moduleId").equals(String.valueOf(moduleId))) {
                     result.add(createDominoFromVertex(it))
                 }
             }
         }
-
-        return result.asList()
-
+        result
     }
 
-    List<Domino> getAllDominosForModuleId(Integer moduleId) {
-        List<Domino> dominos = new ArrayList<>()
-        Iterable<Vertex> vertices = orientGraph.getVertices("Domino.moduleId", moduleId)
 
-        vertices.iterator().forEachRemaining({
-            dominos.add(createDominoFromVertex(it))
-        })
-        return dominos
-    }
 
     private Domino createDominoFromVertex(Vertex it) {
         Domino domino = new Domino()

@@ -1,4 +1,10 @@
+.glyphicon {
+  font-size: 0.5em;
+  color: #a0ced6;
+}
+
 .domino {
+  text-align: left;
   float: left;
   font-size: 20px;
   color: white;
@@ -9,14 +15,28 @@
   -webkit-border-radius: .4em;
   -moz-border-radius: .4em;
   border-radius: .4em;
-}
-
-.domino, .domino .one {
   background-color:#000;
   padding-left: 0.6em;
   padding-right: 0.6em;
-  padding-top: 0.45em;
+  padding-top: 0.0em;
+  padding-bottom: 0.0em;
+}
+
+
+.domino .oneTop {
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  padding-top: 0.55em;
+  padding-bottom: 0.8em;
+  height: 3em;
+}
+
+.domino .oneBottom {
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  padding-top: 0.8em;
   padding-bottom: 0.9em;
+  height: 3em;
 }
 
 .domino .line {

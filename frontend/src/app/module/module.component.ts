@@ -39,6 +39,18 @@ export class ModuleComponent implements OnInit {
     return this.gameService.getSelectedDomino(this.moduleNumber);
   }
 
+  getBackgroundIn(domino) {
+    var colorLeft = domino.colorsIn[0];
+    var colorRight = domino.colorsIn[1];
+    return 'linear-gradient(to left, ' + colorLeft + ' 0% , ' + colorLeft + ' 50%, ' + colorRight + ' 50%,' + colorRight + ' 100%)';
+  }
+
+  getBackgroundOut(domino) {
+    var colorLeft = domino.colorsOut[0];
+    var colorRight = domino.colorsOut[1];
+    return 'linear-gradient(to left, ' + colorLeft + ' 0% , ' + colorLeft + ' 50%, ' + colorRight + ' 50%,' + colorRight + ' 100%)';
+  }
+
   dominoDeselect() {
     this.gameService.removeSelect(this.moduleNumber);
     this.gameService.openModule = this.moduleNumber;

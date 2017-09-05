@@ -72,7 +72,7 @@ public class DominoDataCreator {
     }
 
     private void createEdges() {
-        for(int i = 1; i < 6; i++) {
+        for(int i = 1; i < 5; i++) {
             //select all vertices for each module and create edges to the descending modules
             orientGraph.getVertices("Domino.moduleId", String.valueOf(i)).iterator().forEachRemaining((Vertex vertex) -> {
                 List<String> colorsOutList = (List<String>)vertex.getProperty("colorsOut");
@@ -88,8 +88,9 @@ public class DominoDataCreator {
                 sql.append(");");
                 try {
                     orientGraph.command(new OCommandSQL(sql.toString())).execute();
-                } catch (Exception e) {
-                    log.error(e.getMessage());
+                }
+                catch (Exception ex) {
+                    log.error(ex.getMessage());
                 }
             });
 

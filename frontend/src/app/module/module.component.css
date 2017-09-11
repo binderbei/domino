@@ -49,6 +49,10 @@
     cursor: pointer;
 }
 
+.domino-module.is-selected .domino-wrapper {
+    cursor: initial;
+}
+
 .domino {
     font-size: 2rem;
     color: #fff;

@@ -1,8 +1,8 @@
-<div class="container-fluid">
-  <div style="text-align:center">
-    <img width="150" src="/assets/images/banner.png" />
-  </div>
-  <span *ngFor="let m of modulenumbers">
-    <app-module [moduleNumber]="m"></app-module>
-  </span>
+<div id="content">
+    <header>
+        <img width="150" src="/assets/images/banner.png" />
+    </header>
+    <main class="container-fluid">
+        <app-module *ngFor="let m of modulenumbers" [moduleNumber]="m"></app-module>
+    </main>
 </div>

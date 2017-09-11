@@ -1,0 +1,17 @@
+#content {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    width: 100%;
+    flex-grow: 1;
+    background-color: rgba(127, 255, 210, .4);
+}

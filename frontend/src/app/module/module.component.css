@@ -1,49 +1,90 @@
+.domino-module {
+    font-size: 16px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.domino-module h3 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.domino-module .is-selected h3 {
+    display: flex;
+    align-items: center;
+}
+
 .glyphicon {
-  font-size: 0.5em;
-  color: #a0ced6;
+    font-size: .6em;
+    color: rgb(192, 192, 192);
+}
+
+.oneTop,
+.oneBottom {
+    text-shadow: 2px 2px rgba(0, 0, 0, .75);
+}
+
+.domino-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    margin-top: 1rem;
+    background-color: rgba(127, 255, 210, .6);
+}
+
+.domino-module.is-selected .domino-wrapper {
+    justify-content: center;
+    background-color: rgba(68, 218, 163, 0.9);
+}
+
+.domino-module.is-selected .domino {
+    margin-left: 0;
+    margin-right: 0;
+    display: inline-block;
+}
+
+.domino-module h3>span,
+.domino-wrapper {
+    cursor: pointer;
 }
 
 .domino {
-  text-align: left;
-  float: left;
-  font-size: 20px;
-  color: white;
-  width: 3em;
-  height: 6em;
-  margin: 20px;
-  position: relative;
-  -webkit-border-radius: .4em;
-  -moz-border-radius: .4em;
-  border-radius: .4em;
-  background-color:#000;
-  padding-left: 0.6em;
-  padding-right: 0.6em;
-  padding-top: 0.0em;
-  padding-bottom: 0.0em;
+    font-size: 2rem;
+    color: #fff;
+    width: 3em;
+    height: 6em;
+    margin: 20px;
+    position: relative;
+    border-radius: .4em;
+    background-color: #000;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    padding-top: 0.0em;
+    padding-bottom: 0.0em;
 }
 
-
-.domino .oneTop {
-  padding-left: 0.6em;
-  padding-right: 0.6em;
-  padding-top: 0.55em;
-  padding-bottom: 0.8em;
-  height: 3em;
+.oneTop {
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    padding-top: 0.55em;
+    padding-bottom: 0.8em;
+    height: 3em;
 }
 
-.domino .oneBottom {
-  padding-left: 0.6em;
-  padding-right: 0.6em;
-  padding-top: 0.8em;
-  padding-bottom: 0.9em;
-  height: 3em;
+.oneBottom {
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    padding-top: 0.8em;
+    padding-bottom: 0.9em;
+    height: 3em;
 }
 
-.domino .line {
-  width: 2.5em;
-  height: .2em;
-  position: absolute;
-  top: 2.8em;
-  left: .25em;
-  background-color: #fff;
+.line {
+    height: .2em;
+    position: absolute;
+    top: 3em;
+    left: 0;
+    right: 0;
+    background-color: #fff;
 }

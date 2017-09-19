@@ -1,4 +1,4 @@
-<div *ngIf="!isSelected()" class="domino-module">
+<div *ngIf="!isSelected()" class="domino-module" [hidden]="!isModuleActive()">
     <h3 (click)="clicked()">
         <span>Module {{moduleNumber}}</span>
         <span class="glyphicon glyphicon-zoom-in"></span>
@@ -21,7 +21,7 @@
         <span class="glyphicon glyphicon-zoom-out"></span>
     </h3>
     <div class="domino-wrapper">
-        <div class="domino">
+        <div class="domino" (click)="dominoDeselect()">
             <div [ngStyle]="{'background' : getBackgroundIn(getSelected())}" class="oneTop">
                 {{getSelected().inValue}}
             </div>

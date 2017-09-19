@@ -1,6 +1,7 @@
 package com.diva_e.service
 
 import com.diva_e.data.Domino
+import com.diva_e.data.DominoData
 import com.tinkerpop.blueprints.Vertex
 import com.tinkerpop.blueprints.impls.orient.OrientGraph
 import com.tinkerpop.blueprints.impls.orient.OrientVertex
@@ -16,8 +17,7 @@ class DominoService {
     @Autowired
     private OrientGraph orientGraph
 
-    List<Domino> getDominosForId(Integer moduleId, List<String> selected) {
-
+    DominoData getDominosForId(Integer moduleId, List<String> selected) {
         if (selected.size() > 0) {
             return getMatchingDominosForModule(moduleId, selected)
         } else {
@@ -25,18 +25,21 @@ class DominoService {
         }
     }
 
-    List<Domino> getAllDominosForModuleId(Integer moduleId) {
+    DominoData getAllDominosForModuleId(Integer moduleId) {
+        DominoData dominoData = new DominoData()
         List<Domino> dominos = new ArrayList<>()
         Iterable<Vertex> vertices = orientGraph.getVertices("Domino.moduleId", moduleId)
 
         vertices.iterator().forEachRemaining({
             dominos.add(createDominoFromVertex(it))
         })
-        return dominos
+        dominoData.setDominos(dominos)
+        dominoData.setActiveModules(["1", "2", "3", "4", "5"])
+        return dominoData
     }
 
 
-    List<Domino> getMatchingDominosForModule(Integer moduleId, List<String> selected) {
+    DominoData getMatchingDominosForModule(Integer moduleId, List<String> selected) {
 
         Collections.sort(selected)
         String startProductId = selected.get(0)
@@ -67,35 +70,39 @@ class DominoService {
             list.add(it.object.getProperty('dominoId')); return true }
         .path{it }
 
-        HashSet<String> result = extractResults(startProductId, moduleId, pipeIn, pipeOut)
-
-        return result.asList()
+        return extractResults(startProductId, moduleId, pipeIn, pipeOut)
 
     }
 
-    private HashSet<String> extractResults(String startProductId, int moduleId, GremlinGroovyPipeline pipeIn, GremlinGroovyPipeline pipeOut) {
-        HashSet<String> result = new HashSet<>()
+    private DominoData extractResults(String startProductId, int moduleId, GremlinGroovyPipeline pipeIn, GremlinGroovyPipeline pipeOut) {
+        DominoData dominoData = new DominoData()
+        HashSet<String> dominos = new HashSet<>()
+        HashSet<String> activeModules = new HashSet<>()
 
         if (startProductId.startsWith(moduleId + "_")) {
-            result.add(startProductId)
+            dominos.add(startProductId)
         }
 
         for (List<List<OrientVertex>> allPathOut : pipeIn.toList()) {
             allPathOut.each {
+                activeModules.add(it.getProperty("moduleId"))
                 if (it.getProperty("moduleId").equals(String.valueOf(moduleId))) {
-                    result.add(createDominoFromVertex(it))
+                    dominos.add(createDominoFromVertex(it))
                 }
             }
         }
 
         for (List<List<OrientVertex>> allPathIn : pipeOut.toList()) {
             allPathIn.each {
+                activeModules.add(it.getProperty("moduleId"))
                 if (it.getProperty("moduleId").equals(String.valueOf(moduleId))) {
-                    result.add(createDominoFromVertex(it))
+                    dominos.add(createDominoFromVertex(it))
                 }
             }
         }
-        result
+        dominoData.setDominos(dominos.asList())
+        dominoData.setActiveModules(activeModules.asList())
+        dominoData
     }
 
 
